@@ -1,17 +1,18 @@
 import React,{Component} from 'react';
 import LikeBtn from './components/likeBtn';
 import Comments from './components/comments';
+import './App.css'
 
 class App extends Component{
   render() {
     return (
     <div className="">
-      <h1 className="text-center">Languages</h1>
-      <div className="container">
+      <h1 className="text-center">Technologies</h1>
+      <div className="container ">
                 <div className="row row-cols-1 row-cols-md-3 ">
                 <div className="col mb-4">
                 <div className="card h-100 border-primary mw-30">
-                <div className="card-body">
+                <div className="card-body box">
                 <h5 className="card-title">Java <LikeBtn /></h5>
                 <p className="card-text">Java is a general-purpose programming language that is class-based, object-oriented, and designed to have as few implementation dependencies as possible.</p>    
                 <Comments />                

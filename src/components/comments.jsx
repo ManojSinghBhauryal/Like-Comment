@@ -1,35 +1,57 @@
 import React, { Component } from "react";
+import LikeBtn from './likeBtn'
 
 class Comments extends Component{
-    state = {
-        count:0,
+    constructor(){
+        super();
+    this.state = {
+        id:"",
         comment:"",
         comments:[]
-      };
-      incrementLike = ()=>{
-        this.setState({count:this.state.count + 1});
-      }
-    updateValue=(val)=>{
-        this.setState({ comment: val });
     }
-    addComment=()=>{
-        const newComment = { caption: this.state.comment };
-        this.setState({ comment: "" });
-        let comments = [...this.state.comments, newComment];
-        this.setState({ comments: comments });
-    }
+
+}
+updateValue=event=>{
+    event.preventDefault();
+    this.setState({comment: event.target.value});
+}
+
+addComment=event=>{
+    event.preventDefault();
+    this.setState({
+        comment:"",
+        comments:[...this.state.comments, this.state.comment]
+    })
+}
+    
     render() {
         return(
-        <div className="new-comment">
-          <input className="w-100" type="text" placeholder="comment here"
-            onChange={e => this.updateValue(e.target.value)}
-            value={this.state.comment} />
-          <button className="btn btn-light btn-sm" onClick={this.addComment}>Comment</button>
-          <div className="comment-list">
-          {this.state.comments.map(comment => (
-           <li key={this.id}></li>
-          ))}
-          </div>
+            <div>
+        <form className="new-comment" 
+          onSubmit={this.addComment}>
+
+          <input className="w-100" placeholder="comment here"
+            onChange={this.updateValue}
+            value={this.state.Comment} />
+
+          <button className="btn btn-light btn-sm" 
+              type="submit">
+              Comment
+          </button>
+
+        </form>
+        <table className="table mt-3">
+        {this.state.comments.map((item, index) => (
+            <tr>
+                <td key={index} className="text-left">
+                    {item}
+                </td>
+                <td className="text-right">
+                    <LikeBtn/>
+                </td>
+            </tr>
+        ))}
+        </table>
         </div>
         );
     }
